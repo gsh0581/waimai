@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
-import ListItem from "./ListItem/ListItem";
+import ListItem from "./ListItem/ListItem"
+import Loading from 'component/Loading/Loading'
 import { getListData } from "./../../store/actions/contentListAction";
 import './style.scss'
 /**
@@ -9,11 +10,44 @@ import './style.scss'
  */
 class CategoryList extends Component {
     constructor(props) {
-        super(props);
-        this.fatchData();
+        super(props)
+        // 标识是否可以滚动
+        this.state={
+            isand:false,
+
+        }
+        this.page = 0
+        // 请求第一屏数据
+        this.fatchData(this.page)
     }
-    fatchData(){
-        this.props.dispatch(getListData())
+    onLoadPage(){
+        let clientHeight = document.documentElement.clientHeight
+        let scrollHeight = document.body.scrollHeight
+        let scrollTop = document.documentElement.scrollTop
+
+        let proLoadDis = 30;
+
+        if((scrollTop +clientHeight) >= (scrollHeight-proLoadDis)){
+            this.page++
+            // 最多滚动三页
+            if(this.page >3){
+                this.setState({
+                    isand :true,
+                })
+            }else{
+                this.fatchData(this.page);
+            }
+        }
+    }
+    componentDidMount(){
+        window.addEventListener('scroll',this.onLoadPage.bind(this))
+    }
+    componentWillUnmount(){
+        window.removeEventListener('scroll',this.onLoadPage.bind(this))
+        
+    }
+    fatchData(page){
+        this.props.dispatch(getListData(page))
     }
     renderItems(){
         const {list} = this.props;
@@ -29,9 +63,8 @@ class CategoryList extends Component {
                     <span>附近商家</span>
                     <span className="title-line"></span>                    
                 </h4>
-                {
-                        this.renderItems()
-                }
+                { this.renderItems() }
+                <Loading isand={this.state.isand}/>
             </div>
         )
     }

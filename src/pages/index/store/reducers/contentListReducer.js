@@ -4,9 +4,14 @@ const initState = {
     list:[]
 }
 
-const getListData = (state,action) => ({
-     ...state,list:action.obj.data.poilist
-})
+const getListData = (state,action) => {
+    if(action.page===0){
+    return{...state,list:action.obj.data.poilist }
+    }else{
+        let list = state.list
+        return {...state,list:list.concat(action.obj.data.poilist)}
+    }
+}
 
 const contentListReducer = (state=initState,action)=>{
     switch(action.type){

@@ -47,6 +47,42 @@ import './style.scss'
             }
             return starjsx
         }
+         /**
+         * 渲染月售
+         * @param {*} data 
+         */
+        renderMonthNum(data){
+            let num = data.month_sale_num
+            if(num>999){
+                return '999+'
+            }
+            return num;
+        }
+        /**
+         * 是否为美团专送tag
+         * @param {*} data 
+         */
+        renderMeituanFlag(data){
+            if(data.delivery_type){
+                return <div className="item-meituan-flag">美团专送</div>
+            }
+            return null
+        }
+        /**
+         * 渲染商家活动
+         * @param {*} data 
+         */
+        renderOthers(data){
+            const {discounts2} = data
+            return discounts2.map((item,index)=> {
+                return (
+                <div className="other-info" key={index}>
+                            <img src={item.icon_url} alt="" className="other-tag"/>
+                            <div className="other-content">{item.info}</div>
+                        </div>
+                ) 
+            })
+        }
     render() {
         let {itemData}  = this.props;
         return (
@@ -55,21 +91,18 @@ import './style.scss'
                 {this.renderBrand(itemData)}
                 <div className="item-info-content">
                     <p className="item-title">{itemData.name}</p>
-                    <div className="item-desc">
+                    <div className="item-desc clearfix">
                     <div className="item-score">{this.renderScore(itemData)}</div>
-                    <div className="item-count">qq</div>
-                    <div className="item-distance">sd</div>
-                    <div className="item-time">zx</div>
+                    <div className="item-count">月售{this.renderMonthNum(itemData)}</div>
+                    <div className="item-distance">&nbsp;{itemData.distance}</div>
+                    <div className="item-time">{itemData.mt_delivery_time}&nbsp;|</div>
                     </div>
                     <div className="item-price">
-                        <div className="item-pre-price">xx</div>
-                        <div className="item-dis-price">xx</div>
+                        <div className="item-pre-price">{itemData.min_price_tip}</div>
+                        {this.renderMeituanFlag(itemData)}
                     </div>
                     <div className="item-others">
-                        <div className="other-info">
-                            <img src="" alt="" className="other-tag"/>
-                            <div className="other-content"></div>
-                        </div>
+                       {this.renderOthers(itemData)}
                     </div>
                 </div>
             </div>

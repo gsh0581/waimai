@@ -72,6 +72,9 @@ module.exports = {
         ]
     },
     resolve:{
+        alias:{
+            component:path.resolve(srcRoot,'components')
+        },
         extensions:['.js','.jsx']
     },
     output: {
