@@ -13,7 +13,7 @@ import { getHeadData } from "../../store/actions/categoryAction";
         })
     }
     fetchData(){
-      this.props.dispatch(getHeadData)
+      this.props.dispatch(getHeadData())
     }
     
     render() {
