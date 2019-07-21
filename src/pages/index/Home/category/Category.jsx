@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { getHeadData } from "../../store/actions/categoryAction";
+import './style.scss'
  class Category extends Component {
      constructor(props) {
          super(props);
@@ -8,8 +9,12 @@ import { getHeadData } from "../../store/actions/categoryAction";
         }
     renderItems(){
         const {items} = this.props
-        return items.map((item,index)=>{
-           return <div key={index}>{item.name}</div>
+        const categories = items.splice(0,8)
+        return categories.map((item,index)=>{
+           return <div key={index} className="category-item">
+               <img src={item.url} alt="" className="item-icon"/>
+               <p className="item-name">{item.name}</p>
+           </div>
         })
     }
     fetchData(){
@@ -18,7 +23,7 @@ import { getHeadData } from "../../store/actions/categoryAction";
     
     render() {
         return (
-            <div className="category-content">
+            <div className="category-content clearfix">
                 {this.renderItems()}
             </div>
         )

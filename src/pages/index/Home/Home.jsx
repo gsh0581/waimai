@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
 import Header from './Header/Header'
-import Category from './category/Category'
+import Category from './Category/Category'
+import ContentList from './ContentList/ContentList'
 /**
  * @constructor <Home />
  * @description 首页tab代码
@@ -17,6 +18,7 @@ class Home extends Component {
             <div>
                 <Header />
                 <Category />
+                <ContentList />
             </div>
         )
     }

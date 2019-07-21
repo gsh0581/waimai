@@ -1,13 +1,13 @@
-import {HEAD_DATA} from './constants'
+import {LIST_DATA} from './constants'
 import axios from 'axios'
 
-export const getHeadData = ()=> (dispatch)=>{
+export const getListData = ()=> (dispatch)=>{
     axios({
         method:'get',
-        url:'/json/head.json'
+        url:'/json/homelist.json'
     }).then((res) => {
         dispatch({
-            type:HEAD_DATA,
+            type:LIST_DATA,
             obj:res.data
         
         })
