@@ -1,11 +1,11 @@
 const path = require('path')
 const HtmlWebpackplugin = require('html-webpack-plugin')
 const fs = require('fs')
-const srcRoot = path.resolve(__dirname, './src')
+const srcRoot = path.resolve(__dirname, 'src')
 const devPath = path.resolve(__dirname, 'dev')
 const pageDir = path.resolve(srcRoot, 'pages')
 const mainFile = 'index.js'
-
+const webpack = require('webpack')
 function getHtmlArray(entryMap) {
     let htmlArray = []
     Object.keys(entryMap).forEach(key => {
@@ -46,11 +46,11 @@ module.exports = {
     entry: entryMap,
     module: {
         rules: [
-            {
-                test: /\.(js|jsx)$/,
-                use: [{
-                    loader:'babel-loader'
-                }],
+            {   test: /\.(js|jsx)$/, 
+                use: [
+                  {loader: 'babel-loader'},
+                  {loader: 'eslint-loader'}
+                ],
                 include: srcRoot
             },
             {
@@ -58,24 +58,29 @@ module.exports = {
                 use: ['style-loader', 'css-loader'],
                 include: srcRoot
             },
+            { test: /\.scss$/ , use:['style-loader','css-loader','sass-loader', {
+                loader: 'sass-resources-loader',
+                options: {
+                    resources: `${srcRoot}/components/common.scss`
+                }
+            }], include: srcRoot},
             {
-                test: /\.scss/,
-                use: ['style-loader', 'scss-loader', 'sass-loader'],
-                include: srcRoot
-            },
-            {
-                test: /\.(png|jpg|jpeg)/,
+                test: /\.(png|jpg|jpeg)$/,
                 use: 'url-loader?limit=8192', // 小于8k，base64加载
                 include: srcRoot
             }
         ]
+    },
+    resolve:{
+        extensions:['.js','.jsx']
     },
     output: {
         path: devPath,
         filename: '[name].min.js'
     },
     plugins: [
-
+        new webpack.NamedModulesPlugin(),
+        new webpack.HotModuleReplacementPlugin()
     ].concat(htmlArray)
 
 }

@@ -7,4 +7,11 @@ const store = createStore(reducer,
     composeEnhancers(
         applyMiddleware(thunk)
     ))
+if (module.hot) {
+    module.hot.accept('./reducers/index',()=>{
+        const nextRootReducer = require('./reducers/index').default
+        store.replaceReducer(nextRootReducer)
+    })
+    
+}
 export default store
