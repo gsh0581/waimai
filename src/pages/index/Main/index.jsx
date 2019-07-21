@@ -1,5 +1,7 @@
 import React, { Component ,Fragment} from 'react'
-import Home from './../Home/Home'
+// import Home from './../Home/Home'
+// import Order from './../Order/Order'
+import My from './../My/My'
 import './main.scss'
 import BottomBar from './../BottomBar'
  class Main extends Component {
@@ -8,9 +10,11 @@ import BottomBar from './../BottomBar'
         }
         
         render() {
+            // <Home />
+            // <Order />
         return ( 
             <Fragment>
-                <Home />
+                <My />
                 <BottomBar />
             </Fragment>
         )

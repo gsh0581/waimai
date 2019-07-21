@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
 import ListItem from "./ListItem/ListItem"
-import Loading from 'component/Loading/Loading'
+import ScrollView from 'component/ScrollView/ScrollView'
 import { getListData } from "./../../store/actions/contentListAction";
 import './style.scss'
 /**
@@ -13,7 +13,7 @@ class CategoryList extends Component {
         super(props)
         // 标识是否可以滚动
         this.state={
-            isand:false,
+            isend:false,
 
         }
         this.page = 0
@@ -21,31 +21,17 @@ class CategoryList extends Component {
         this.fatchData(this.page)
     }
     onLoadPage(){
-        let clientHeight = document.documentElement.clientHeight
-        let scrollHeight = document.body.scrollHeight
-        let scrollTop = document.documentElement.scrollTop
-
-        let proLoadDis = 30;
-
-        if((scrollTop +clientHeight) >= (scrollHeight-proLoadDis)){
-            this.page++
+        this.page++
             // 最多滚动三页
             if(this.page >3){
                 this.setState({
-                    isand :true,
+                    isend :true,
                 })
             }else{
                 this.fatchData(this.page);
             }
-        }
     }
-    componentDidMount(){
-        window.addEventListener('scroll',this.onLoadPage.bind(this))
-    }
-    componentWillUnmount(){
-        window.removeEventListener('scroll',this.onLoadPage.bind(this))
-        
-    }
+  
     fatchData(page){
         this.props.dispatch(getListData(page))
     }
@@ -63,8 +49,9 @@ class CategoryList extends Component {
                     <span>附近商家</span>
                     <span className="title-line"></span>                    
                 </h4>
+                <ScrollView loadCallback={this.onLoadPage.bind(this)} isend={this.state.isend}>
                 { this.renderItems() }
-                <Loading isand={this.state.isand}/>
+                </ScrollView>
             </div>
         )
     }

@@ -1,0 +1,107 @@
+.my{
+    .header{
+        width: 100%;
+        height: px2rem(160px);
+        background-image: url('./img/header.c2a81a2250ded5e19a7681ff525eb33d.png');
+        background-size: cover;
+        overflow: hidden;
+    }
+    .avatar{
+        width: px2rem(72px);
+        height: px2rem(72px);
+        margin: 0 auto;
+        display: block;;
+        margin-top: px2rem(25px);
+        border: px2rem(3px) solid rgba(255,255,255,0.4);
+        border-radius: 50%;
+    }
+    .nickname{
+        color: #333;
+        font-size: px2rem(16px);
+        text-align: center;
+        margin-top: px2rem(15px);
+    }
+    .content{
+        min-height: px2rem(507px);
+        background-color: #f0f0f0;
+
+    }
+    .items{
+        border-bottom: px2rem(10px) solid #eee;
+        background-color: #fff;
+        li{
+            position: relative;
+            padding: px2rem(10px) 0;
+            margin-left: px2rem(15px);
+            border-bottom: px2rem(1px) solid #e4e4e4;
+            &:last-child{
+                border: none;
+            }
+            &::before{
+                content: '';
+                display: block;
+                width: px2rem(16px);
+                height: px2rem(16px);
+                position: absolute;
+                top:50%;
+                transform: translateY(-50%);
+                left: 1px;
+                background-size: cover;
+            }
+           
+            p{
+                position: relative;
+                font-size: px2rem(14px);
+                line-height: px2rem(20px);
+                color: #333;
+                margin-left: px2rem(30px);
+                &:after{
+                    content: '>';
+                    display: block;
+                    width: px2rem(16px);
+                    height: px2rem(16px);
+                    position: absolute;;
+                    top: 0;
+                    right: px2rem(9px);
+                    color: #aaa;
+    
+                }
+            }
+        }
+        .address{
+            &:before{
+                background-image: url('./img/locationIcon.9dd63529d5a0bc1a6278b43f93543e8e.png')
+            }
+        }
+        .money{
+            &:before{
+                background-image: url('./img/money.b9874e869f4237b73e205c0d9ac13bb6.png')
+            }
+        }
+        .email{
+            &:before{
+                background-image: url('./img/email.19aae1205b26b3450b1c7a720b34642e.png')
+            }
+        }
+        .question{
+            &:before{
+                background-image: url('./img/question.98034e5523b736b5cb5a6b366fbef66f.png')
+            }
+        }
+    }
+    .tel{
+        font-size: px2rem(15px);
+        color: #ffb000;
+        text-align: center;
+        line-height: px2rem(46px);
+        height: px2rem(46px);
+        background-color: #fff;
+    }
+    .time{
+        font-size: px2rem(14px);
+        margin-top: px2rem(13px);
+        text-align: center;
+        color: #999;
+    }
+    
+}

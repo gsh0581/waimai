@@ -25,3 +25,9 @@
 
     }
 }
+// 处理省略号
+.one-line{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
