@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-
+import 'static/rem'
 import { Provider } from 'react-redux';
 
 import Container from './Main/Container';

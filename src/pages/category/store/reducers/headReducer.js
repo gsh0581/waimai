@@ -1,3 +1,4 @@
+import {CHANGE_TAB, GET_FILTER_DATA} from './../actions/constants'
 import { TABKEY } from "../../config";
 let tabs = {};
 tabs[TABKEY.cate]={
@@ -17,11 +18,21 @@ tabs[TABKEY.filter]={
 }
 const initState = {
     tabs,
-    activeKey:TABKEY.cate
+    activeKey:TABKEY.cate,
+    filterData:{}
 }
-
+const changeTab = (state,action)=>({
+   ...state,
+   activeKey:action.obj.activeKey 
+})
+const getFilterData = (state,action)=>({
+    ...state,
+    filterData:action.obj.data
+})
  const headReducer = (state=initState, action) => {
     switch (action.type) {
+        case CHANGE_TAB : return changeTab(state,action)
+        case GET_FILTER_DATA :return getFilterData(state,action)
         default:
             return state
     }

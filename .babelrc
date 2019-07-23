@@ -4,6 +4,7 @@
         "react",
         "stage-0"
     ],
+    // 添加es7 支持 regenerator异步
     "plugins": [
 		["transform-runtime", {
 			"helpers": false,
