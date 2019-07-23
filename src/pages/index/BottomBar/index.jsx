@@ -21,10 +21,6 @@ class BottomBar extends Component {
     }
     changeTab(item){
         this.props.history.replace(item.key);
-        // console.log(1);
-        // this.props.dispatch(changeTab({
-        //     activeKey:item.key
-        // }))
     }
     renderItems(){
         const {tabs} = this.props   

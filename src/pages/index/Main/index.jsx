@@ -1,21 +1,23 @@
 import React, { Component } from 'react'
 import {Route,withRouter} from 'react-router-dom'
+import { connect } from 'react-redux';
+
 import Home from './../Home/Home'
-import Order from './../Order/Order'
-import My from './../My/My'
+// import Order from './../Order/Order'
+// import My from './../My/My'
 import './main.scss'
 import BottomBar from './../BottomBar'
-// import Loading from './Loading'
-// import Loadable from 'react-loadable'
-// const Order = Loadable({
-//     loader: () => import(/* webpackChunkName: "order" */'../Order/Order'),
-//     loading: Loading,
-// });
+import Loading from './Loading'
+import Loadable from 'react-loadable'
+const Order = Loadable({
+    loader: () => import(/* webpackChunkName: "order" */'../Order/Order'),
+    loading: Loading,
+});
 
-// const My = Loadable({
-//     loader: () => import(/* webpackChunkName: "my" */'../My/My'),
-//     loading: Loading,
-// });
+const My = Loadable({
+    loader: () => import(/* webpackChunkName: "my" */'../My/My'),
+    loading: Loading,
+});
  class Main extends Component {
         constructor(props) {
             super(props);
@@ -36,4 +38,8 @@ import BottomBar from './../BottomBar'
 }
 
 
-export default withRouter(Main)
+export default withRouter(connect(
+    // state =>({
+        
+    // })
+)(Main));

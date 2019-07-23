@@ -26,11 +26,3 @@ export default function configureStore(preloadedState) {
     }
     return store
   }
-// const store = createStore(reducer,
-//     composeEnhancers(
-//         applyMiddleware(thunk)
-//     ))
-
-    
-
-// export default store

@@ -13,10 +13,3 @@ export default (history) => combineReducers({
   contentListReducer,
   orderReducer
 })
-// const reducer = combineReducers({
-//     tabReducer,
-//     categoryReducer,
-//     contentListReducer,
-//     orderReducer
-// })
-// export default reducer

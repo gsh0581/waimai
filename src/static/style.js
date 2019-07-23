@@ -22,11 +22,17 @@ font-size: 100%;
 font: inherit;
 vertical-align: baseline;
 }
+html {
+-webkit-text-size-adjust: 100%;
+-ms-text-size-adjust: 100%;
+-webkit-overflow-scrolling : touch;
+}
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
 display: block;
 }
+
 body {
 line-height: 1;
 font-size:17px;
@@ -41,6 +47,19 @@ blockquote:before, blockquote:after,
 q:before, q:after {
 content: '';
 content: none;
+}
+a {
+text-decoration: none;
+font-family: ‘Microsoft YaHei’, Tahoma, Arial, sans-serif;
+cursor:default;
+}
+a:link,a:active,a:visited,a:hover {
+background: none;
+-webkit-tap-highlight-color: rgba(0,0,0,0);
+-webkit-tap-highlight-color: transparent;
+}
+a:hover {
+text-decoration: none;
 }
 table {
 border-collapse: collapse;
