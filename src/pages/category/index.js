@@ -1,13 +1,21 @@
-import React from 'react';
+import React ,{Component,Fragment}from 'react';
 import ReactDom from 'react-dom';
-import 'static/rem'
 import { Provider } from 'react-redux';
-
+import { GlobalStyle } from 'static/style'
 import Container from './Main/Container';
 
 import store from './store';
-
-ReactDom.render(
-    <Provider store={store}><Container /></Provider>,
-    document.getElementById('root')
+class Category extends Component {
+    render() {
+      return (
+      <Fragment>
+          <GlobalStyle />
+          <Provider store={store}>
+          <Container />
+          </Provider>
+        </Fragment>
+      );
+    }
+  }
+ReactDom.render(<Category />,document.getElementById('root')
 );
