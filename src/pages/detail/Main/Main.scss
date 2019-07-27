@@ -1,0 +1,32 @@
+.detail{
+    .tab-bar{
+        margin-top: px2rem(64px);
+        font-size: px2rem(16px);
+        border-bottom:px2rem(1px) solid #f0f0f0;
+        display: flex;
+        justify-content: center;
+        .tab-item{
+            flex: 1;
+            position: relative;
+            color: #666;
+            text-align: center;
+            height: px2rem(45px);
+            line-height: px2rem(45px);
+            &.active{
+                &:after{
+                    content: '';
+                    display: block;
+                    width: px2rem(60px);
+                    height:px2rem( 4px);
+                    position: absolute;
+                    bottom: 0;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background-color: #ffd161;
+                    
+                }
+            }
+        }
+        
+    }
+}
