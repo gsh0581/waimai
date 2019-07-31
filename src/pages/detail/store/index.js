@@ -2,7 +2,8 @@ import { createStore,compose,applyMiddleware } from 'redux'
 import { createBrowserHistory } from 'history'
 import { routerMiddleware } from 'connected-react-router'
 import createRootReducer from './reducers'
-export const history = createBrowserHistory()
+const history = createBrowserHistory()
+history.replace('menu')
 
 import thunk from 'redux-thunk'
 
@@ -25,4 +26,7 @@ export default function configureStore(preloadedState) {
         
     }
     return store
+  }
+  export {
+    history
   }

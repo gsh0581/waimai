@@ -1,5 +1,11 @@
-import {GET_LIST_DATA} from './constant'
+import {GET_LIST_DATA ,LEFT_CLICK} from './constant'
 import axios from 'axios'
+export const itemClick = (obj) =>  (dispatch)=>{
+    dispatch({
+        type:LEFT_CLICK,
+        obj
+    })
+}
 export const getListData = () => async (dispatch,)=>{
     // let url = '/json/list.json'
     // if(obj.filterData || getState().contentListReducer.filterData){
