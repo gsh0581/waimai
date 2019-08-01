@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {getListData, itemClick} from './../store/actions/MenuAction'
+import MenuItem from './MenuItem/MenuItem'
+import ShopBar from './ShopBar/ShopBar'
 import './style.scss'
 class Menu extends Component {
     constructor(props) {
@@ -15,6 +17,15 @@ class Menu extends Component {
             currentLeftIndex:index
         }))
     }
+    renderRightList(array){
+        let _array = array || [];
+        return _array.map((item,index)=>{
+            if(!item.chooseCount){
+                item.chooseCount = 0
+            }
+            return <MenuItem key={index} data={item} _index={index}></MenuItem>
+        })
+    }
     /**
      * 渲染右边的列表
      */
@@ -27,7 +38,8 @@ class Menu extends Component {
                 {currentItem.name}
             </p>
             return [
-                title
+                title,
+                <div key={2} className="right-list-inner">{this.renderRightList(currentItem.spus)}</div>
             ]
         }
     }
@@ -36,8 +48,9 @@ class Menu extends Component {
      */
     renderLeft(){
             let list = this.props.listData.food_spu_tags || []
+
             return list.map((item,index)=>{
-                let cls = 'left-item'
+                let cls = this.props.currentLeftIndex === index? 'left-item active': 'left-item'
                 return (<div 
                 key={index} 
                 className={cls}
@@ -64,6 +77,7 @@ class Menu extends Component {
                 <div className="right-content">
                     {this.renderRight()}
                 </div>
+                <ShopBar />
             </div>
         )
     }
